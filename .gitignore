@@ -1,0 +1,10 @@
+node_modules/
+.next/
+.vercel/
+.tsupgrader/
+.agents/
+.claude/
+.codex/
+*.tsbuildinfo
+.env*
+!.env.example
