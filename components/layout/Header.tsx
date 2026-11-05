@@ -28,6 +28,17 @@ export default function SiteHeader() {
           </span>
           <span>HAIR STUDIO</span>
         </Link>
+        <button
+          className="menu-toggle"
+          type="button"
+          aria-label={menuOpen ? "Close navigation" : "Open navigation"}
+          aria-expanded={menuOpen}
+          aria-controls="main-navigation"
+          onClick={() => setMenuOpen((open) => !open)}
+        >
+          <span />
+          <span />
+        </button>
         <nav
           className={`main-nav${menuOpen ? " open" : ""}`}
           id="main-navigation"
@@ -60,17 +71,6 @@ export default function SiteHeader() {
           <Link className="button button-dark header-book" href="/booking">
             BOOK AN APPOINTMENT <span aria-hidden="true">↗</span>
           </Link>
-          <button
-            className="menu-toggle"
-            type="button"
-            aria-label={menuOpen ? "Close navigation" : "Open navigation"}
-            aria-expanded={menuOpen}
-            aria-controls="main-navigation"
-            onClick={() => setMenuOpen((open) => !open)}
-          >
-            <span />
-            <span />
-          </button>
         </div>
       </header>
     </>

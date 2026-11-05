@@ -1,8 +1,10 @@
 import Link from "next/link";
+import BrandStar from "../ui/BrandStar";
 
 export default function HomeEnquirySection() {
   return (
     <section className="home-enquiry section-pad">
+      <BrandStar className="section-brand-star home-enquiry-star" />
       <div className="home-enquiry-heading">
         <h2>
           Come for the

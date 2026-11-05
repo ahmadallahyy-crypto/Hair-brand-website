@@ -1,8 +1,10 @@
 import Link from "next/link";
+import BrandStar from "../ui/BrandStar";
 
 export default function BrandStorySection() {
   return (
     <section className="brand-story" data-reveal>
+      <BrandStar className="section-brand-star brand-story-star" />
       <div className="brand-story-lead">
         <h2>
           Your hair is

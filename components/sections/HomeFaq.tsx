@@ -1,9 +1,11 @@
 import Link from "next/link";
 import { faqs } from "../../lib/content/faqs";
+import BrandStar from "../ui/BrandStar";
 
 export default function HomeFaq() {
   return (
     <section className="home-faq section-pad">
+      <BrandStar className="section-brand-star home-faq-star" />
       <div className="faq-intro">
         <h2>
           A few things

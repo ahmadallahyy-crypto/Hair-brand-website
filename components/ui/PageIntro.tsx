@@ -1,5 +1,6 @@
 import Image from "next/image";
 import type { ReactNode } from "react";
+import BrandStar from "./BrandStar";
 
 type PageIntroProps = {
   title: string;
@@ -17,6 +18,7 @@ export default function PageIntro({ title, children, image }: PageIntroProps) {
       <div className="page-intro-copy">
         <h1>{title}</h1>
         <div>{children}</div>
+        <BrandStar className="section-brand-star page-intro-star" />
       </div>
       {image && (
         <div className="page-intro-image">

@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState } from "react";
+import type { PointerEvent } from "react";
 import {
   styleCategories,
   styleGallery,
@@ -29,6 +30,24 @@ export default function StyleGallery({
     [activeCategory]
   );
   const displayedItems = limit ? filteredItems.slice(0, limit) : filteredItems;
+
+  function trackGalleryCursor(event: PointerEvent<HTMLAnchorElement>) {
+    if (event.pointerType === "touch") return;
+
+    const bounds = event.currentTarget.getBoundingClientRect();
+    const insetX = Math.min(60, bounds.width / 2);
+    const insetY = Math.min(22, bounds.height / 2);
+    const x = Math.max(insetX, Math.min(bounds.width - insetX, event.clientX - bounds.left));
+    const y = Math.max(insetY, Math.min(bounds.height - insetY, event.clientY - bounds.top));
+
+    event.currentTarget.style.setProperty("--gallery-cursor-x", `${x}px`);
+    event.currentTarget.style.setProperty("--gallery-cursor-y", `${y}px`);
+  }
+
+  function resetGalleryCursor(event: PointerEvent<HTMLAnchorElement>) {
+    event.currentTarget.style.removeProperty("--gallery-cursor-x");
+    event.currentTarget.style.removeProperty("--gallery-cursor-y");
+  }
 
   return (
     <>
@@ -70,6 +89,8 @@ export default function StyleGallery({
               className="style-gallery-image"
               href={`/gallery/${item.id}`}
               aria-label={`View ${item.title}`}
+              onPointerMove={trackGalleryCursor}
+              onPointerLeave={resetGalleryCursor}
             >
               <Image
                 src={item.image}
@@ -80,6 +101,9 @@ export default function StyleGallery({
               />
               <span className="image-status">
                 {item.status === "studio" ? "AURELIA STUDIO WORK" : "ILLUSTRATIVE REFERENCE"}
+              </span>
+              <span className="style-gallery-cursor" aria-hidden="true">
+                VIEW STYLE
               </span>
             </Link>
             <div className="style-gallery-caption">

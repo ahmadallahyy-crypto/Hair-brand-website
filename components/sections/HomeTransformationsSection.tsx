@@ -1,10 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
+import BrandStar from "../ui/BrandStar";
 import { transformationPreviews } from "../../lib/content/transformations";
 
 export default function HomeTransformationsSection() {
   return (
     <section className="transformations-section section-pad" id="recent-work">
+      <BrandStar className="section-brand-star transformations-star" />
       <div className="story-heading" data-reveal>
         <div>
           <h2>

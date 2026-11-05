@@ -92,6 +92,7 @@ export default function BraidCarousel() {
         <div className="hero-image-shade" aria-hidden="true" />
       </div>
       <div
+        key={activeItem.id}
         className={`hero-slide-copy ${activeIndex % 2 === 0 ? "hero-slide-copy--right" : "hero-slide-copy--left"}`}
       >
         <h1>

@@ -1,7 +1,11 @@
-export default function BrandStar() {
+type BrandStarProps = {
+  className?: string;
+};
+
+export default function BrandStar({ className = "wordmark-star" }: BrandStarProps) {
   return (
     <svg
-      className="wordmark-star"
+      className={className}
       viewBox="0 0 100 100"
       aria-hidden="true"
       focusable="false"

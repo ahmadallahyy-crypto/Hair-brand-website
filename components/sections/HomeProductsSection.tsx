@@ -1,10 +1,12 @@
 import Link from "next/link";
 import ProductGrid from "./ProductGrid";
+import BrandStar from "../ui/BrandStar";
 import { products } from "../../lib/content/products";
 
 export default function HomeProductsSection() {
   return (
     <section className="shop-section section-pad home-products" id="products">
+      <BrandStar className="section-brand-star home-products-star" />
       <div className="story-heading" data-reveal>
         <div>
           <h2>
