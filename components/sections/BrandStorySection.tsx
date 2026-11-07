@@ -14,12 +14,12 @@ export default function BrandStorySection() {
       </div>
       <div className="brand-story-copy">
         <p>
-          We braid and style hair for the way you want to show up — whether you are preparing for
-          an occasion or choosing a look for everyday life.
+          At Aurelia, we create beautiful braids and styles for the moments that matter and the
+          everyday. Our premium hair studio in Abuja is here to help you find a look that feels
+          like you.
         </p>
         <p>
-          Find your next style in the studio, then explore hair products for looks you can make
-          your own.
+          Explore hair products and inspiration for your next look.
         </p>
         <Link className="text-link" href="/about">
           GET TO KNOW THE STUDIO <span aria-hidden="true">↗</span>

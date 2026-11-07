@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     template: "%s | AURELIA Hair Studio",
   },
   description:
-    "Explore hair braiding, styling, hair products, and appointment enquiries at Aurelia Hair Studio in Abuja.",
+    "Aurelia Hair Studio is a premium hair brand in Abuja, creating beautiful braids and styles, with hair products to help you make every look your own.",
   icons: {
     icon: "/favicon.svg",
     shortcut: "/favicon.svg",
