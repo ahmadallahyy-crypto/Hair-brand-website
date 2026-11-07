@@ -1,4 +1,4 @@
-import Image from "next/image";
+import CachedImage from "../ui/CachedImage";
 import { portfolio } from "../../lib/content/portfolio";
 
 export default function PortfolioGrid() {
@@ -12,12 +12,11 @@ export default function PortfolioGrid() {
           key={item.title}
         >
           <div className="image-wrap">
-            <Image
+            <CachedImage
               src={item.image}
               alt={item.alt}
               fill
               sizes="(max-width: 650px) 45vw, 30vw"
-              unoptimized
             />
             <span className="image-index">0{index + 1}</span>
           </div>

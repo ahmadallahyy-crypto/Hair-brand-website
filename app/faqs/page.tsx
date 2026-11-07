@@ -23,7 +23,7 @@ export default function FaqsPage() {
         <p>Find answers about style enquiries, appointments, wedding braids, and products.</p>
       </PageIntro>
       <section className="faqs-page section-pad">
-        <div className="faq-list">
+        <div className="faq-list" data-reveal>
           {faqs.map((faq) => (
             <details key={faq.question}>
               <summary>{faq.question}</summary>
@@ -31,7 +31,7 @@ export default function FaqsPage() {
             </details>
           ))}
         </div>
-        <div className="gallery-booking-cta">
+        <div className="gallery-booking-cta" data-reveal>
           <p>Still have a question? Send the studio an enquiry.</p>
           <Link className="button button-green" href="/booking">
             CONTACT THE STUDIO <span aria-hidden="true">↗</span>

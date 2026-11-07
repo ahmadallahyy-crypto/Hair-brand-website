@@ -9,7 +9,7 @@ export default function FounderTeamSection({
 }: FounderTeamSectionProps) {
   return (
     <section className={`founder-team section-pad${variant === "home" ? " founder-team-home" : ""}`}>
-      <div className="founder-team-heading">
+      <div className="founder-team-heading" data-reveal>
         <div>
           <h2>
             The people
@@ -26,7 +26,7 @@ export default function FounderTeamSection({
           </Link>
         )}
       </div>
-      <div className="profile-content-grid">
+      <div className="profile-content-grid" data-reveal>
         <article className="profile-content-note">
           <p>THE FOUNDER</p>
           <h3>A story to be told.</h3>

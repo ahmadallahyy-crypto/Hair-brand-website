@@ -1,4 +1,4 @@
-import Image from "next/image";
+import CachedImage from "../ui/CachedImage";
 import Link from "next/link";
 import BrandStar from "../ui/BrandStar";
 import { styleGallery } from "../../lib/content/style-gallery";
@@ -10,17 +10,16 @@ export default function HomeWeddingSection() {
 
   return (
     <section className="wedding-feature">
-      <div className="wedding-feature-image">
-        <Image
+      <div className="wedding-feature-image" data-reveal>
+        <CachedImage
           src={weddingImage.image}
           alt={weddingImage.alt}
           fill
           sizes="(max-width: 780px) 100vw, 52vw"
-          unoptimized
         />
         <span className="image-status">ILLUSTRATIVE REFERENCE</span>
       </div>
-      <div className="wedding-feature-copy">
+      <div className="wedding-feature-copy" data-reveal>
         <BrandStar className="section-brand-star wedding-feature-star" />
         <h2>
           For the day

@@ -6,7 +6,11 @@
 }
 .main-nav a { font-size: 11px; letter-spacing: .08em; font-weight: 700; }
 .button.header-book { font-size: 11px; letter-spacing: .05em; font-weight: 700; }
-.main-nav a { position: relative; padding: 8px 0; }
+.main-nav a {
+  position: relative;
+  padding: 8px 0;
+}
+
 .main-nav a:after {
   content: "";
   position: absolute;
@@ -15,7 +19,7 @@
   left: 0;
   bottom: 2px;
   background: var(--green);
-  transition: width var(--motion-duration-ui) var(--motion-ease-out);
+  transition: width var(--motion-duration-ui) linear;
 }
 .main-nav a:hover:after { width: 100%; }
 
@@ -31,7 +35,7 @@
   letter-spacing: .08em;
   border: 1px solid transparent;
   transition:
-    transform var(--motion-duration-ui) var(--motion-ease-out),
+    transform var(--motion-duration-fast) var(--motion-ease-emphasis),
     background var(--motion-duration-ui) var(--motion-ease-out),
     color var(--motion-duration-ui) var(--motion-ease-out);
 }
@@ -58,7 +62,7 @@
 }
 .text-link span { font-size: 14px; }
 .text-link span,
-.button span { transition: transform var(--motion-duration-fast) var(--motion-ease-out); }
+.button span { transition: transform var(--motion-duration-fast) var(--motion-ease-emphasis); }
 .text-link:hover span,
 .button:hover span { transform: translateX(3px); }
 .text-link:focus-visible,
@@ -94,7 +98,7 @@
 }
 .work-card-tall .image-wrap { height: 475px; }
 .work-card-offset .image-wrap { height: 365px; }
-.image-wrap img, .product-image img { transition: transform .7s cubic-bezier(.2,.7,.2,1); }
+.image-wrap img, .product-image img { transition: transform var(--motion-duration-image) var(--motion-ease-out); }
 .work-card:hover img, .product-card:hover img { transform: scale(1.045); }
 .image-index {
   position: absolute;
@@ -214,7 +218,10 @@
   background: var(--green);
   color: var(--cream);
   cursor: pointer;
-  transition: background 180ms ease, color 180ms ease, transform 180ms ease;
+  transition:
+    background var(--motion-duration-card) var(--motion-ease-emphasis),
+    color var(--motion-duration-card) var(--motion-ease-emphasis),
+    transform var(--motion-duration-card) var(--motion-ease-emphasis);
 }
 .product-add-button:hover {
   background: var(--ink);
@@ -314,7 +321,10 @@
 .service-list b {
   font-size: 20px;
   justify-self: end;
+  transition: transform var(--motion-duration-fast) var(--motion-ease-emphasis);
 }
+.service-list a:hover b,
+.service-list a:focus-visible b { transform: translateX(3px); }
 
 .booking-form {
   display: grid;
@@ -341,6 +351,7 @@
   padding: 12px 14px;
   font: inherit;
   color: var(--ink);
+  transition: border-color 150ms ease, box-shadow 150ms ease;
 }
 .booking-form textarea { resize: vertical; }
 .booking-note {
@@ -422,26 +433,6 @@
 }
 .services-content .button { margin-top: 28px; width: fit-content; }
 
-.motion-ready [data-reveal]:not(.is-visible),
-.motion-ready [data-reveal-stagger] > *:not(.is-visible) {
-  opacity: 0;
-  transform: translateY(22px);
-}
-
-.motion-ready [data-reveal],
-.motion-ready [data-reveal-stagger] > * {
-  transition:
-    opacity var(--motion-duration-reveal) var(--motion-ease-out),
-    transform var(--motion-duration-reveal) var(--motion-ease-out);
-  transition-delay: var(--reveal-delay, 0ms);
-}
-
-.motion-ready [data-reveal].is-visible,
-.motion-ready [data-reveal-stagger] > *.is-visible {
-  opacity: 1;
-  transform: none;
-}
-
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -451,4 +442,5 @@
     animation-iteration-count: 1 !important;
     transition-duration: .01ms !important;
   }
+
 }

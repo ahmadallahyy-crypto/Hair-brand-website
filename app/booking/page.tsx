@@ -21,7 +21,7 @@ export default function BookingPage() {
       >
         <p>Share what you have in mind. The studio will confirm availability and next steps.</p>
       </PageIntro>
-      <section className="booking-page section-pad">
+      <section className="booking-page section-pad" data-reveal>
         <div className="booking-copy">
           <h2>Your next look<br /><i>starts here.</i></h2>
           <p>Use this form for appointment requests, consultations, event styling, or product questions.</p>

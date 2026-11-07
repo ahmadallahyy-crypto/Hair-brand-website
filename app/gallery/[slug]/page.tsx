@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import CachedImage from "../../../components/ui/CachedImage";
 import { styleGallery } from "../../../lib/content/style-gallery";
 
 type StyleDetailPageProps = {
@@ -41,15 +41,14 @@ export default async function StyleDetailPage({ params }: StyleDetailPageProps) 
       <Link className="style-detail-back" href="/gallery">
         <span aria-hidden="true">←</span> BACK TO LOOKBOOK
       </Link>
-      <div className="style-detail-layout">
+      <div className="style-detail-layout" data-reveal>
         <div className="style-detail-image">
-          <Image
+          <CachedImage
             src={item.image}
             alt={item.alt}
             fill
             priority
             sizes="(max-width: 780px) 90vw, 55vw"
-            unoptimized
           />
           <span className="image-status">
             {item.status === "studio" ? "AURELIA STUDIO WORK" : "ILLUSTRATIVE REFERENCE"}

@@ -5,7 +5,7 @@ export default function HomeEnquirySection() {
   return (
     <section className="home-enquiry section-pad">
       <BrandStar className="section-brand-star home-enquiry-star" />
-      <div className="home-enquiry-heading">
+      <div className="home-enquiry-heading" data-reveal>
         <h2>
           Come for the
           <br />
@@ -16,7 +16,7 @@ export default function HomeEnquirySection() {
           product; the studio will confirm the next steps.
         </p>
       </div>
-      <div className="home-enquiry-actions">
+      <div className="home-enquiry-actions" data-reveal>
         <Link className="button button-dark" href="/booking">
           REQUEST AN APPOINTMENT <span aria-hidden="true">↗</span>
         </Link>

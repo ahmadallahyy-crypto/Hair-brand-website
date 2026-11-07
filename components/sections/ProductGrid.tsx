@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import CachedImage from "../ui/CachedImage";
 import { useState } from "react";
 import {
   formatNairaPrice,
@@ -32,13 +32,12 @@ export default function ProductGrid({
       {items.map((product, index) => (
         <article className="product-card" key={product.name}>
           <div className="product-image">
-            <Image
+            <CachedImage
               src={product.image}
               alt={product.alt}
               fill
               loading={eager && index === 0 ? "eager" : "lazy"}
               sizes="(max-width: 780px) 90vw, 44vw"
-              unoptimized
             />
             {product.featured && <span className="product-tag">EXAMPLE LISTING</span>}
             <button

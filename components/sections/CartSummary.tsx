@@ -16,7 +16,7 @@ export default function CartSummary() {
   const orderHref = `/booking?interest=product&item=${encodeURIComponent(productNames)}`;
 
   return (
-    <section className="cart-summary" id="cart" aria-labelledby="cart-heading">
+    <section className="cart-summary" id="cart" aria-labelledby="cart-heading" data-reveal>
       <div className="cart-summary-heading">
         <div>
           <h2 id="cart-heading">Your product bag</h2>

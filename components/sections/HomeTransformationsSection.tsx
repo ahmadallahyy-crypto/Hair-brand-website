@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Image from "next/image";
+import CachedImage from "../ui/CachedImage";
 import BrandStar from "../ui/BrandStar";
 import { transformationPreviews } from "../../lib/content/transformations";
 
@@ -20,27 +20,25 @@ export default function HomeTransformationsSection() {
           references, not verified Aurelia client transformations.
         </p>
       </div>
-      <div className="weekly-braid-grid" data-reveal-stagger>
+      <div className="weekly-braid-grid" data-reveal>
         {transformationPreviews.map((item) => (
           <article className="weekly-braid-card" key={item.id}>
             <div className="weekly-braid-comparison">
               <div className="weekly-braid-photo">
-                <Image
+                <CachedImage
                   src={item.beforeImage}
                   alt={item.beforeAlt}
                   fill
                   sizes="(max-width: 780px) 44vw, 21vw"
-                  unoptimized
                 />
                 <span>BEFORE REFERENCE</span>
               </div>
               <div className="weekly-braid-photo">
-                <Image
+                <CachedImage
                   src={item.afterImage}
                   alt={item.afterAlt}
                   fill
                   sizes="(max-width: 780px) 44vw, 21vw"
-                  unoptimized
                 />
                 <span>AFTER REFERENCE</span>
               </div>
@@ -60,7 +58,7 @@ export default function HomeTransformationsSection() {
           </article>
         ))}
       </div>
-      <div className="weekly-braid-footer">
+      <div className="weekly-braid-footer" data-reveal>
         <p>
           These photos are separate illustrative references. They do not show the same
           person before and after, or verified Aurelia studio work.

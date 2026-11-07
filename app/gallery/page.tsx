@@ -34,8 +34,10 @@ export default async function GalleryPage({ searchParams }: GalleryPageProps) {
         </p>
       </PageIntro>
       <section className="gallery-page section-pad">
-        <StyleGallery initialCategory={initialCategory} />
-        <div className="gallery-booking-cta">
+        <div data-reveal>
+          <StyleGallery initialCategory={initialCategory} />
+        </div>
+        <div className="gallery-booking-cta" data-reveal>
           <p>Have a style in mind for your next occasion?</p>
           <Link className="button button-green" href="/booking">
             ASK ABOUT A STYLE <span aria-hidden="true">↗</span>

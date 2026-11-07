@@ -6,7 +6,7 @@ export default function HomeFaq() {
   return (
     <section className="home-faq section-pad">
       <BrandStar className="section-brand-star home-faq-star" />
-      <div className="faq-intro">
+      <div className="faq-intro" data-reveal>
         <h2>
           A few things
           <br />
@@ -20,7 +20,7 @@ export default function HomeFaq() {
           ALL FREQUENTLY ASKED QUESTIONS <span aria-hidden="true">↗</span>
         </Link>
       </div>
-      <div className="faq-list">
+      <div className="faq-list" data-reveal>
         {faqs.slice(0, 4).map((faq) => (
           <details key={faq.question}>
             <summary>{faq.question}</summary>

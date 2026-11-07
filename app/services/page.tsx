@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
+import CachedImage from "../../components/ui/CachedImage";
 import PageIntro from "../../components/ui/PageIntro";
 import ServiceList from "../../components/sections/ServiceList";
 
@@ -16,15 +16,14 @@ export default function ServicesPage() {
       <PageIntro title="Your moment in the chair.">
         <p>Come as you are. Find the service that fits your hair, your plans, and your own kind of beautiful.</p>
       </PageIntro>
-      <section className="services-section section-pad services-page">
+      <section className="services-section section-pad services-page" data-reveal>
         <div className="services-image">
-          <Image
+          <CachedImage
             src="https://images.pexels.com/photos/33664383/pexels-photo-33664383/free-photo-of-top-view-of-stylish-braided-hairstyle-on-woman.jpeg?auto=compress&w=1100"
             alt="Illustrative top view of an intricate braided hairstyle"
             fill
             loading="eager"
             sizes="(max-width: 650px) 90vw, 42vw"
-            unoptimized
           />
           <span className="image-status">STYLE REFERENCE</span>
         </div>

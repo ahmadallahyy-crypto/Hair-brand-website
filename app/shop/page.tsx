@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
+import CachedImage from "../../components/ui/CachedImage";
 import PageIntro from "../../components/ui/PageIntro";
 import ProductGrid from "../../components/sections/ProductGrid";
 import CartSummary from "../../components/sections/CartSummary";
@@ -27,7 +27,7 @@ export default function ShopPage() {
           <h2>Products to shop</h2>
           <p>Ask about current availability, product details, and pricing through WhatsApp.</p>
         </div>
-        <div data-reveal-stagger>
+        <div data-reveal>
           <ProductGrid items={products} eager />
         </div>
         <CartSummary />
@@ -37,7 +37,7 @@ export default function ShopPage() {
           unavailable until actual product prices, delivery fees, and Paystack are configured.
         </p>
       </section>
-      <section className="supplies-section section-pad">
+      <section className="supplies-section section-pad" data-reveal>
         <div className="supplies-copy">
           <h2>
             Products used
@@ -54,12 +54,11 @@ export default function ShopPage() {
         </div>
         <div className="supplies-note">
           <div className="supplies-image">
-            <Image
+            <CachedImage
               src="https://images.pexels.com/photos/7440062/pexels-photo-7440062.jpeg?auto=compress&w=1000"
               alt="Illustrative collection of hair-care bottles and styling tools"
               fill
               sizes="(max-width: 780px) 90vw, 34vw"
-              unoptimized
             />
             <span className="image-status">ILLUSTRATIVE EXAMPLE</span>
           </div>

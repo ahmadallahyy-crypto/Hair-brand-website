@@ -19,8 +19,10 @@ export default function HomeServicesSection() {
           will confirm availability.
         </p>
       </div>
-      <ServiceList />
-      <Link className="button button-green" href="/booking">
+      <div className="home-services-list" data-reveal>
+        <ServiceList />
+      </div>
+      <Link className="button button-green" href="/booking" data-reveal>
         REQUEST A SESSION <span aria-hidden="true">↗</span>
       </Link>
     </section>

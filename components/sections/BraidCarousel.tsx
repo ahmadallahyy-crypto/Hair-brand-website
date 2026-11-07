@@ -1,22 +1,25 @@
 "use client";
 
-import Image from "next/image";
+import CachedImage from "../ui/CachedImage";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import type { FocusEvent } from "react";
 import { styleGallery } from "../../lib/content/style-gallery";
 
-const slideDuration = 6500;
+const slideDuration = 2800;
 
 export default function BraidCarousel() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [userPaused, setUserPaused] = useState(false);
+  const [previousIndex, setPreviousIndex] = useState<number | null>(null);
   const [isHovered, setIsHovered] = useState(false);
   const [hasFocus, setHasFocus] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(true);
+  const [slideDirection, setSlideDirection] = useState<"next" | "previous">("next");
   const pointerInteraction = useRef(false);
   const activeItem = styleGallery[activeIndex];
-  const isPaused = userPaused || isHovered || hasFocus || reducedMotion;
+  const previousItem =
+    previousIndex === null ? null : styleGallery[previousIndex];
+  const isPaused = isHovered || hasFocus || reducedMotion;
 
   useEffect(() => {
     const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -32,19 +35,32 @@ export default function BraidCarousel() {
 
     const timer = window.setInterval(() => {
       if (document.visibilityState === "visible") {
-        setActiveIndex((index) => (index + 1) % styleGallery.length);
+        setPreviousIndex(reducedMotion ? null : activeIndex);
+        setSlideDirection("next");
+        setActiveIndex((activeIndex + 1) % styleGallery.length);
       }
     }, slideDuration);
 
     return () => window.clearInterval(timer);
-  }, [isPaused]);
+  }, [activeIndex, isPaused, reducedMotion]);
 
   function showPrevious() {
-    setActiveIndex((index) => (index - 1 + styleGallery.length) % styleGallery.length);
+    setPreviousIndex(reducedMotion ? null : activeIndex);
+    setSlideDirection("previous");
+    setActiveIndex((activeIndex - 1 + styleGallery.length) % styleGallery.length);
   }
 
   function showNext() {
-    setActiveIndex((index) => (index + 1) % styleGallery.length);
+    setPreviousIndex(reducedMotion ? null : activeIndex);
+    setSlideDirection("next");
+    setActiveIndex((activeIndex + 1) % styleGallery.length);
+  }
+
+  function showSlide(index: number) {
+    if (index === activeIndex) return;
+    setPreviousIndex(reducedMotion ? null : activeIndex);
+    setSlideDirection(index >= activeIndex ? "next" : "previous");
+    setActiveIndex(index);
   }
 
   function handleBlur(event: FocusEvent<HTMLElement>) {
@@ -74,51 +90,55 @@ export default function BraidCarousel() {
       }}
       onBlurCapture={handleBlur}
     >
+      {previousItem && !reducedMotion && (
+        <div
+          key={`previous-${previousItem.id}-${activeItem.id}`}
+          className={`braid-carousel-image braid-carousel-image--exit-${slideDirection}`}
+          aria-hidden="true"
+        >
+          <CachedImage
+            src={previousItem.image}
+            alt=""
+            fill
+            sizes="100vw"
+          />
+        </div>
+      )}
       <div
-        className="braid-carousel-image"
+        key={`current-${activeItem.id}`}
+        className={`braid-carousel-image braid-carousel-image--current braid-carousel-image--enter-${slideDirection}`}
         role="group"
         aria-roledescription="slide"
         aria-label={`${activeIndex + 1} of ${styleGallery.length}: ${activeItem.title}`}
       >
-        <Image
-          key={activeItem.id}
+        <CachedImage
           src={activeItem.image}
           alt={activeItem.alt}
           fill
           priority={activeIndex === 0}
           sizes="100vw"
-          unoptimized
         />
-        <div className="hero-image-shade" aria-hidden="true" />
       </div>
-      <div
-        key={activeItem.id}
-        className={`hero-slide-copy ${activeIndex % 2 === 0 ? "hero-slide-copy--right" : "hero-slide-copy--left"}`}
-      >
-        <h1>
-          Braids made
-          <br />
-          <i>personal.</i>
-        </h1>
-        <h2>{activeItem.title}</h2>
-        <p className="hero-slide-description">
-          {activeItem.category} · Find a look you love, then tell us how you want to make it your own.
-        </p>
-        <div className="hero-actions">
-          <Link
-            className="button button-green"
-            href={`/booking?interest=style&item=${encodeURIComponent(activeItem.title)}`}
-          >
-            ASK ABOUT THIS STYLE <span aria-hidden="true">↗</span>
-          </Link>
-          <Link className="hero-lookbook-link" href="/gallery">
-            EXPLORE THE LOOKBOOK <span aria-hidden="true">↗</span>
-          </Link>
+      <div className="hero-image-shade" aria-hidden="true" />
+      <div className="hero-cta-row">
+        <Link className="hero-lookbook-link" href="/gallery">
+          EXPLORE THE LOOKBOOK <span aria-hidden="true">↗</span>
+        </Link>
+        <Link
+          className="button button-green"
+          href={`/booking?interest=style&item=${encodeURIComponent(activeItem.title)}`}
+        >
+          ASK ABOUT THIS STYLE <span aria-hidden="true">↗</span>
+        </Link>
+      </div>
+      <div className="hero-slide-copy">
+        <div className="hero-slide-details">
+        <h1 className="hero-slide-title">{activeItem.title}</h1>
+          <p className="hero-slide-description">
+            {activeItem.category} · Find a look you love, then tell us how you want to make it your own.
+          </p>
         </div>
       </div>
-      <span className="hero-image-status">
-        {activeItem.status === "studio" ? "AURELIA STUDIO WORK" : "ILLUSTRATIVE STYLE REFERENCE"}
-      </span>
       <div className="hero-slider-footer">
         <a className="hero-scroll-link" href="#recent-work">
           SCROLL TO RECENT WORK
@@ -140,7 +160,7 @@ export default function BraidCarousel() {
                 className={index === activeIndex ? "active" : ""}
                 aria-label={`Show slide ${index + 1}: ${item.title}`}
                 aria-current={index === activeIndex ? "true" : undefined}
-                onClick={() => setActiveIndex(index)}
+                onClick={() => showSlide(index)}
               />
             ))}
           </div>
@@ -152,24 +172,6 @@ export default function BraidCarousel() {
               <path d="M5 12h14m-7-7 7 7-7 7" />
             </svg>
           </button>
-          {!reducedMotion && (
-            <button
-              type="button"
-              className="hero-autoplay-toggle"
-              onClick={() => setUserPaused((paused) => !paused)}
-              aria-label={userPaused ? "Play automatic slides" : "Pause automatic slides"}
-            >
-              {userPaused ? (
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="m9 6 10 6-10 6z" />
-                </svg>
-              ) : (
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M8 6v12m8-12v12" />
-                </svg>
-              )}
-            </button>
-          )}
         </div>
       </div>
     </section>

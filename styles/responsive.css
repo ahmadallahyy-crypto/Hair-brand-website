@@ -168,12 +168,31 @@
     padding: 28px 6% 92px;
   }
 
-  .hero-slide-copy { padding: 28px 18px; }
-  .hero-slide-copy h1 { font-size: clamp(48px, 13vw, 68px); }
-  .hero-slide-copy h2 { margin-top: 15px; }
+  .hero-cta-row {
+    right: 6%;
+    left: 6%;
+    gap: 14px;
+  }
+  .hero-cta-row .hero-lookbook-link {
+    gap: 6px;
+    font-size: 8px;
+    letter-spacing: .06em;
+    white-space: nowrap;
+  }
+  .hero-cta-row .button {
+    min-height: 40px;
+    padding: 0 12px;
+    gap: 10px;
+    font-size: 8px;
+    letter-spacing: .05em;
+    white-space: nowrap;
+  }
+  .hero-slide-copy {
+    padding: 28px 18px;
+  }
+  .hero-slide-details { text-align: right; }
+  .hero-slide-title { font-size: clamp(22px, 6vw, 28px); }
   .hero-slide-description { font-size: 13px; }
-  .hero-slide-copy .hero-actions { gap: 17px; }
-  .hero-image-status { top: 18px; bottom: auto; left: 6%; }
   .hero-slider-footer {
     display: grid;
     grid-template-columns: 1fr;

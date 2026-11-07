@@ -41,7 +41,7 @@
   height: 42px;
   border: 1px solid rgba(26, 26, 26, .2);
   color: var(--ink);
-  transition: color 180ms ease, background 180ms ease, border-color 180ms ease;
+  transition: color 300ms ease, background 300ms ease, border-color 300ms ease;
 }
 
 .header-cart:hover {

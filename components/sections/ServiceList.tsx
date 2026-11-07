@@ -3,7 +3,7 @@ import { services } from "../../lib/content/services";
 
 export default function ServiceList() {
   return (
-    <div className="service-list" data-reveal-stagger>
+    <div className="service-list">
       {services.map((service) => (
         <Link
           href={`/booking?interest=service&service=${encodeURIComponent(service.name)}`}

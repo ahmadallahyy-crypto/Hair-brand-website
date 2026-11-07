@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import RevealOnScroll from "../components/layout/RevealOnScroll";
+import SiteScrollMotion from "../components/layout/SiteScrollMotion";
 import ScrollIndicator from "../components/layout/ScrollIndicator";
 import { CartProvider } from "../components/layout/CartProvider";
 import SiteFooter from "../components/layout/Footer";
@@ -14,6 +14,10 @@ export const metadata: Metadata = {
   },
   description:
     "Explore hair braiding, styling, hair products, and appointment enquiries at Aurelia Hair Studio in Abuja.",
+  icons: {
+    icon: "/favicon.svg",
+    shortcut: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({
@@ -41,7 +45,7 @@ export default function RootLayout({
           <main>{children}</main>
           <SiteFooter />
           <ScrollIndicator />
-          <RevealOnScroll />
+          <SiteScrollMotion />
         </CartProvider>
       </body>
     </html>

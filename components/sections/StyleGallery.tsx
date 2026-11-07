@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import CachedImage from "../ui/CachedImage";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import type { PointerEvent } from "react";
@@ -92,12 +92,11 @@ export default function StyleGallery({
               onPointerMove={trackGalleryCursor}
               onPointerLeave={resetGalleryCursor}
             >
-              <Image
+              <CachedImage
                 src={item.image}
                 alt={item.alt}
                 fill
                 sizes="(max-width: 650px) 90vw, 45vw"
-                unoptimized
               />
               <span className="image-status">
                 {item.status === "studio" ? "AURELIA STUDIO WORK" : "ILLUSTRATIVE REFERENCE"}

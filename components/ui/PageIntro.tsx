@@ -1,4 +1,4 @@
-import Image from "next/image";
+import CachedImage from "./CachedImage";
 import type { ReactNode } from "react";
 import BrandStar from "./BrandStar";
 
@@ -14,7 +14,7 @@ type PageIntroProps = {
 
 export default function PageIntro({ title, children, image }: PageIntroProps) {
   return (
-    <section className={`page-intro${image ? " page-intro-with-image" : ""}`}>
+    <section className={`page-intro${image ? " page-intro-with-image" : ""}`} data-reveal>
       <div className="page-intro-copy">
         <h1>{title}</h1>
         <div>{children}</div>
@@ -22,13 +22,12 @@ export default function PageIntro({ title, children, image }: PageIntroProps) {
       </div>
       {image && (
         <div className="page-intro-image">
-          <Image
+          <CachedImage
             src={image.src}
             alt={image.alt}
             fill
             loading="eager"
             sizes="(max-width: 780px) 90vw, 42vw"
-            unoptimized
           />
           <span className="image-status">{image.label ?? "ILLUSTRATIVE REFERENCE"}</span>
         </div>

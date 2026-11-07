@@ -1,13 +1,15 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { scrollToTop } from "./SiteScrollMotion";
 
 const radius = 20;
 const circumference = 2 * Math.PI * radius;
 const visibilityThreshold = 180;
 
 export default function ScrollIndicator() {
-  const [scrollPosition, setScrollPosition] = useState({ visible: false, progress: 0 });
+  const [visible, setVisible] = useState(false);
+  const progressCircle = useRef<SVGCircleElement>(null);
 
   useEffect(() => {
     let frame = 0;
@@ -22,10 +24,14 @@ export default function ScrollIndicator() {
             ? Math.min(1, Math.max(0, window.scrollY / scrollableHeight))
             : 0;
 
-        setScrollPosition({
-          visible: window.scrollY > visibilityThreshold,
-          progress,
-        });
+        if (progressCircle.current) {
+          progressCircle.current.style.strokeDashoffset = String(
+            circumference * (1 - progress)
+          );
+        }
+
+        const shouldShow = window.scrollY > visibilityThreshold;
+        setVisible((current) => (current === shouldShow ? current : shouldShow));
       });
     };
 
@@ -40,31 +46,25 @@ export default function ScrollIndicator() {
     };
   }, []);
 
-  if (!scrollPosition.visible) return null;
+  if (!visible) return null;
 
   return (
     <button
       className="scroll-indicator"
       type="button"
       aria-label="Back to top"
-      onClick={() =>
-        window.scrollTo({
-          top: 0,
-          behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
-            ? "instant"
-            : "smooth",
-        })
-      }
+      onClick={scrollToTop}
     >
       <svg viewBox="0 0 48 48" aria-hidden="true">
         <circle className="scroll-indicator-track" cx="24" cy="24" r={radius} />
         <circle
+          ref={progressCircle}
           className="scroll-indicator-progress"
           cx="24"
           cy="24"
           r={radius}
           strokeDasharray={circumference}
-          strokeDashoffset={circumference * (1 - scrollPosition.progress)}
+          strokeDashoffset={circumference}
         />
         <path className="scroll-indicator-arrow" d="m17 26 7-7 7 7" />
       </svg>

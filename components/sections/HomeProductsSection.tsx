@@ -20,10 +20,10 @@ export default function HomeProductsSection() {
           current availability and pricing.
         </p>
       </div>
-      <div data-reveal-stagger>
+      <div data-reveal>
         <ProductGrid items={products.slice(0, 4)} />
       </div>
-      <div className="shop-bottom">
+      <div className="shop-bottom" data-reveal>
         <p>
           Product names, images, and naira demo prices are illustrative only. Confirm actual
           prices and stock with the studio.

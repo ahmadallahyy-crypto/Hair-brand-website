@@ -19,8 +19,10 @@ export default function HomePortfolioSection() {
           about adapting it for you.
         </p>
       </div>
-      <StyleGallery limit={4} />
-      <div className="home-lookbook-cta">
+      <div data-reveal>
+        <StyleGallery limit={4} />
+      </div>
+      <div className="home-lookbook-cta" data-reveal>
         <Link className="text-link" href="/services">
           EXPLORE SERVICES <span aria-hidden="true">↗</span>
         </Link>
